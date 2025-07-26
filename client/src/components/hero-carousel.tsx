@@ -15,7 +15,7 @@ const slides = [
     id: 2,
     image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=800",
     title: "Welcome to International Economic Organization",
-    subtitle: "Financial Support To Improve Our Local Community Development",
+    subtitle: "International Economic Organization to provide financial assistance to people worldwide, helping with childcare, purchasing homes, paying rent, and lots more",
     bgColor: "bg-gradient-to-r from-green-600/90 to-blue-600/80"
   }
 ];
