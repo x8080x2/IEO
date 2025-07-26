@@ -31,11 +31,11 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <img
-              src="@assets/Screenshot 2025-07-26 at 11.03.42 PM_1753563837762.png"
-              alt="IEO Logo"
-              className="w-12 h-8 object-contain"
-            />
+            <div className="w-12 h-8 flex items-center justify-center">
+              <div className="text-2xl font-bold text-gray-900" style={{fontFamily: 'serif'}}>
+                IEO
+              </div>
+            </div>
             <div>
               <h1 className="text-xl font-bold text-gray-900">IEO</h1>
               <p className="text-xs text-gray-600 hidden sm:block">International Economic Organization</p>
