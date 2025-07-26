@@ -7,14 +7,14 @@ const testimonials = [
     name: "Tommy G Griffin",
     role: "Electrician",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150",
-    quote: "Thank you so much for the outstanding service the Federal Emergency and Social Security Administration funds (FESSA Fund) provided. They efficiently reviewed my application and executed the program. I received a $550,000.00 refundable check payment, which has made a significant difference in my life. The eligibility and application process with FESSA was straightforward and reliable. Thank you, FESSA, for your support."
+    quote: "Thank you so much for the outstanding service the Federal Emergency and Social Security Administration funds (IEO Fund) provided. They efficiently reviewed my application and executed the program. I received a $550,000.00 refundable check payment, which has made a significant difference in my life. The eligibility and application process with IEO was straightforward and reliable. Thank you, IEO, for your support."
   },
   {
     id: 2,
     name: "Kortney Clark",
     role: "Real Estate Broker",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150",
-    quote: "I've received a significant $750,000.00 grant from the FESSA Fund. Initially, I had doubts when I came across them online, but after speaking directly with their representative, I can confidently affirm their legitimacy. This support is genuine and greatly appreciated. Thank you."
+    quote: "I've received a significant $750,000.00 grant from the IEO Fund. Initially, I had doubts when I came across them online, but after speaking directly with their representative, I can confidently affirm their legitimacy. This support is genuine and greatly appreciated. Thank you."
   },
   {
     id: 3,
