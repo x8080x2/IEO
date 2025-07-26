@@ -520,30 +520,7 @@ export default function Apply() {
                     Choose which type of funding you are interested in:
                   </h3>
 
-                  <FormField
-                    control={form.control}
-                    name="fundingType"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Select below *</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select funding type" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {fundingTypes.map((type) => (
-                              <SelectItem key={type} value={type}>
-                                {type}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  
 
                   <FormField
                     control={form.control}
