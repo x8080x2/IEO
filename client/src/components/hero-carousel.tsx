@@ -54,11 +54,9 @@ export default function HeroCarousel() {
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white max-w-4xl px-4">
               <div className="flex justify-center mb-6">
-                <img
-                  src="@assets/Screenshot 2025-07-26 at 11.03.42 PM_1753563837762.png"
-                  alt="IEO Logo"
-                  className="w-32 h-20 object-contain"
-                />
+                <div className="text-6xl font-bold text-white border-4 border-white px-6 py-3 rounded-lg" style={{fontFamily: 'serif', letterSpacing: '0.2em'}}>
+                  IEO
+                </div>
               </div>
               <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
                 {slide.title}

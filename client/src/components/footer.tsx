@@ -16,11 +16,11 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-3 mb-4">
-              <img
-                src="@assets/Screenshot 2025-07-26 at 11.03.42 PM_1753563837762.png"
-                alt="IEO Logo"
-                className="w-12 h-8 object-contain"
-              />
+              <div className="w-12 h-8 flex items-center justify-center">
+                <div className="text-2xl font-bold text-white" style={{fontFamily: 'serif'}}>
+                  IEO
+                </div>
+              </div>
               <div>
                 <h3 className="text-xl font-bold">IEO</h3>
                 <p className="text-sm text-gray-400">
