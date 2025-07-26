@@ -54,7 +54,7 @@ export default function HeroCarousel() {
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white max-w-4xl px-4">
               <div className="flex justify-center mb-6">
-                <div className="text-6xl font-bold text-white border-4 border-white px-6 py-3 rounded-lg" style={{fontFamily: 'serif', letterSpacing: '0.2em'}}>
+                <div className="text-6xl font-bold text-white px-6 py-3" style={{fontFamily: 'serif', letterSpacing: '0.2em'}}>
                   IEO
                 </div>
               </div>

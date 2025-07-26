@@ -7,28 +7,28 @@ const testimonials = [
     name: "Tommy G Griffin",
     role: "Electrician",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150",
-    quote: "Thank you so much for the outstanding service the Federal Emergency and Social Security Administration funds (IEO Fund) provided. They efficiently reviewed my application and executed the program. I received a $550,000.00 refundable check payment, which has made a significant difference in my life. The eligibility and application process with IEO was straightforward and reliable. Thank you, IEO, for your support."
+    quote: "Thanks a million for the great service from the IEO Fund. They processed my application quickly and got me a refundable check, which has made a huge difference. The application process was a breeze. Cheers to IEO!"
   },
   {
     id: 2,
     name: "Kortney Clark",
     role: "Real Estate Broker",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150",
-    quote: "I've received a significant $750,000.00 grant from the IEO Fund. Initially, I had doubts when I came across them online, but after speaking directly with their representative, I can confidently affirm their legitimacy. This support is genuine and greatly appreciated. Thank you."
+    quote: "I received a generous grant from the IEO Fund. I can assure you they’re the real deal. This support is truly appreciated. Thank you!"
   },
   {
     id: 3,
     name: "Richard Leon Peak",
     role: "Construction Engineer",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150",
-    quote: "I am deeply grateful for the $450,000.00 direct deposit I received from the IEO Fund today. This generous support comes with no repayment obligation, and it means the world to me. I wholeheartedly recommend the IEO Fund to others in need. Thank you, IEO."
+    quote: "I am deeply grateful for the supporting received from the IEO Fund. No repayment obligation, and it means the world to me. I wholeheartedly recommend the IEO Fund to others in need. Thank you, IEO."
   },
   {
     id: 4,
     name: "Elizabeth Newcomer",
     role: "Registered Nurse",
     image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150",
-    quote: "I'm incredibly proud to share that the IEO Fund has truly transformed my life. I recently received a life-changing $450,000.00 check delivered to my home. My husband, my daughter, and I are overjoyed. I strongly urge everyone to explore this program – it's a genuine opportunity. Thank you, IEO Fund!"
+    quote: "I'm incredibly proud to share that the IEO Fund has truly transformed my life. Nothing much to say tbh. Thank you IEO."
   }
 ];
 
@@ -100,6 +100,8 @@ export default function TestimonialCarousel() {
             onClick={nextTestimonial}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-colors"
           >
+
+            {/* Right Arrow */}
             <ChevronRight className="w-6 h-6" />
           </button>
         </div>
