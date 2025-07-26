@@ -96,7 +96,7 @@ export default function Home() {
                 </h2>
               </div>
               <div className="space-y-4 text-gray-600 leading-relaxed">
-                <p>The primary objective of the International Economic Organization Administration Funds (IEO) Program is to enhance the health and economic well-being of United States citizens. This is achieved by providing an extensive and curated catalog of third-party resources.</p>
+                <p>The primary objective of the International Economic Organization Funds (IEO) Program is to enhance the health and economic well-being of United States citizens. This is achieved by providing an extensive and curated catalog of third-party resources.</p>
                 <p>
                   Our commitment is to offer an extensive nationwide directory encompassing resources, 
                   benefits, and programs to support individuals and families facing various hardships.
