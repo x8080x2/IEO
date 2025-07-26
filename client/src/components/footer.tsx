@@ -16,9 +16,11 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 fessa-blue rounded-lg flex items-center justify-center">
-                <Building2 className="w-6 h-6 text-white" />
-              </div>
+              <img
+                src="@assets/Screenshot 2025-07-26 at 11.03.42 PM_1753563837762.png"
+                alt="IEO Logo"
+                className="w-12 h-8 object-contain"
+              />
               <div>
                 <h3 className="text-xl font-bold">IEO</h3>
                 <p className="text-sm text-gray-400">
@@ -48,7 +50,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-gray-400" />
-                <p className="text-gray-300">(623) 301-7354</p>
+                <p className="text-gray-300">(651) 300-9503</p>
               </div>
             </div>
           </div>
@@ -90,7 +92,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">© fessa-us.org, All Right Reserved.</p>
+          <p className="text-gray-400">© ieo-us.org, All Rights Reserved.</p>
         </div>
       </div>
     </footer>
