@@ -146,9 +146,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <Badge className="fessa-accent text-gray-900 font-semibold mb-3">GET YOUR FUNDS</Badge>
             <h2 className="text-4xl font-bold text-gray-900 mb-6">How The Process Works</h2>
-            <p className="text-xl text-fessa-blue font-semibold">
-              FEDERAL EMERGENCY AND SOCIAL SECURITY ADMINISTRATION FUNDS (IEO International Economic Organization)
-            </p>
+            <p className="text-xl text-fessa-blue font-semibold">INTERNATIONAL ECONOMIC ORGANIZATION FUNDS (IEO International Economic Organization)</p>
           </div>
 
           {/* Process Steps */}
