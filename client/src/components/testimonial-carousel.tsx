@@ -100,8 +100,6 @@ export default function TestimonialCarousel() {
             onClick={nextTestimonial}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-colors"
           >
-
-            {/* Right Arrow */}
             <ChevronRight className="w-6 h-6" />
           </button>
         </div>
