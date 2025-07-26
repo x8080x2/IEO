@@ -193,7 +193,7 @@ export default function Home() {
             </p>
 
             <Card className="p-6 bg-blue-50 border-blue-200">
-              <h3 className="text-2xl font-bold text-fessa-blue mb-4">Federal Government Assistance</h3>
+              <h3 className="text-2xl font-bold text-fessa-blue mb-4">International Economic Organization</h3>
               <p>
                 For those with limited income who require assistance with fundamental living expenses, 
                 the potential for eligibility exists for government aid, which can encompass support 
