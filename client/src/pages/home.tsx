@@ -84,7 +84,6 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <Navigation />
       <HeroCarousel />
-
       {/* About Section */}
       <section id="about" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,12 +96,7 @@ export default function Home() {
                 </h2>
               </div>
               <div className="space-y-4 text-gray-600 leading-relaxed">
-                <p>
-                  The primary objective of the Federal Emergency and Social Security Administration 
-                  Funds (IEO International Economic Organization) Program is to enhance the health and economic well-being of United 
-                  States citizens. This is achieved by providing an extensive and curated catalog 
-                  of third-party resources.
-                </p>
+                <p>The primary objective of the International Economic Organization Administration Funds (IEO) Program is to enhance the health and economic well-being of United States citizens. This is achieved by providing an extensive and curated catalog of third-party resources.</p>
                 <p>
                   Our commitment is to offer an extensive nationwide directory encompassing resources, 
                   benefits, and programs to support individuals and families facing various hardships.
@@ -146,7 +140,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Process Section */}
       <section id="process" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -234,7 +227,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Team Section */}
       <section id="team" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -264,9 +256,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <TestimonialCarousel />
-
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -372,7 +362,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <Footer />
     </div>
   );
