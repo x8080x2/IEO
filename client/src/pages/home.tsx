@@ -283,7 +283,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900">Phone</h3>
-                    <p className="text-gray-600">(651) 300-9503</p>
+                    <p className="text-gray-600">(623) 301-7354</p>
                   </div>
                 </div>
 
