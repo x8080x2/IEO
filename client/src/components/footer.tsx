@@ -48,7 +48,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-gray-400" />
-                <p className="text-gray-300">(651) 300-9503</p>
+                <p className="text-gray-300">(623) 301-7354</p>
               </div>
             </div>
           </div>
