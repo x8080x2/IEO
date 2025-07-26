@@ -35,7 +35,7 @@ export default function Navigation() {
               <Building2 className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">IEO International Economic Organization</h1>
+              <h1 className="text-xl font-bold text-gray-900">IEO</h1>
               <p className="text-xs text-gray-600 hidden sm:block">
                 Federal Emergency & Social Security Administration
               </p>
