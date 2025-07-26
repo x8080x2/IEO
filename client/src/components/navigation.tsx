@@ -61,7 +61,7 @@ export default function Navigation() {
           {/* Contact Info */}
           <div className="hidden lg:block text-right">
             <p className="text-sm text-gray-600">info@ieo-us.org</p>
-            <p className="text-sm font-semibold text-gray-900">(651) 300-9503</p>
+            <p className="text-sm font-semibold text-gray-900">(623) 301-7354</p>
           </div>
 
           {/* Mobile Menu */}
