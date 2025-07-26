@@ -35,7 +35,7 @@ export default function Navigation() {
               <Building2 className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">FESSA</h1>
+              <h1 className="text-xl font-bold text-gray-900">IEO International Economic Organization</h1>
               <p className="text-xs text-gray-600 hidden sm:block">
                 Federal Emergency & Social Security Administration
               </p>
@@ -62,7 +62,7 @@ export default function Navigation() {
 
           {/* Contact Info */}
           <div className="hidden lg:block text-right">
-            <p className="text-sm text-gray-600">info@fessa-us.org</p>
+            <p className="text-sm text-gray-600">info@ieo-us.org</p>
             <p className="text-sm font-semibold text-gray-900">(651) 300-9503</p>
           </div>
 
@@ -90,7 +90,7 @@ export default function Navigation() {
                   </Button>
                 </Link>
                 <div className="pt-4 border-t">
-                  <p className="text-sm text-gray-600">info@fessa-us.org</p>
+                  <p className="text-sm text-gray-600">info@ieo-us.org</p>
                   <p className="text-sm font-semibold text-gray-900">(651) 300-9503</p>
                 </div>
               </nav>

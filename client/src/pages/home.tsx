@@ -99,7 +99,7 @@ export default function Home() {
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
                   The primary objective of the Federal Emergency and Social Security Administration 
-                  Funds (FESSA) Program is to enhance the health and economic well-being of United 
+                  Funds (IEO International Economic Organization) Program is to enhance the health and economic well-being of United 
                   States citizens. This is achieved by providing an extensive and curated catalog 
                   of third-party resources.
                 </p>
@@ -154,7 +154,7 @@ export default function Home() {
             <Badge className="fessa-accent text-gray-900 font-semibold mb-3">GET YOUR FUNDS</Badge>
             <h2 className="text-4xl font-bold text-gray-900 mb-6">How The Process Works</h2>
             <p className="text-xl text-fessa-blue font-semibold">
-              FEDERAL EMERGENCY AND SOCIAL SECURITY ADMINISTRATION FUNDS (FESSA)
+              FEDERAL EMERGENCY AND SOCIAL SECURITY ADMINISTRATION FUNDS (IEO International Economic Organization)
             </p>
           </div>
 
@@ -305,7 +305,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900">Email</h3>
-                    <p className="text-gray-600">info@fessa-us.org</p>
+                    <p className="text-gray-600">info@ieo-us.org</p>
                   </div>
                 </div>
               </div>
