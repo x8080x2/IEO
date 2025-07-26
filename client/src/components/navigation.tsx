@@ -9,7 +9,6 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigationItems = [
-    { href: "#home", label: "Home" },
     { href: "#about", label: "About" },
     { href: "#process", label: "Process" },
     { href: "#team", label: "Team" },
@@ -44,6 +43,9 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
+            <Link href="/" className="text-gray-700 hover:text-fessa-blue transition-colors font-medium">
+              Home
+            </Link>
             {navigationItems.map((item) => (
               <button
                 key={item.href}
@@ -75,6 +77,9 @@ export default function Navigation() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <nav className="flex flex-col space-y-4 mt-8">
+                <Link href="/" onClick={() => setIsOpen(false)} className="text-left py-2 text-gray-700 hover:text-fessa-blue transition-colors">
+                  Home
+                </Link>
                 {navigationItems.map((item) => (
                   <button
                     key={item.href}
