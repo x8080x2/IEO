@@ -1,8 +1,8 @@
-# FESSA Application System
+# IEO Application System
 
 ## Overview
 
-This is a full-stack web application for FESSA (Federal Emergency & Social Security Administration), a financial assistance organization. The system allows users to apply for grants and submit contact inquiries through a modern, responsive web interface.
+This is a full-stack web application for IEO (International Economic Organization), a financial assistance organization. The system allows users to apply for grants and submit contact inquiries through a modern, responsive web interface.
 
 ## User Preferences
 
@@ -13,7 +13,7 @@ Preferred communication style: Simple, everyday language.
 ### Frontend Architecture
 - **Framework**: React with TypeScript
 - **Routing**: Wouter (lightweight client-side routing)
-- **Styling**: Tailwind CSS with custom FESSA branding
+- **Styling**: Tailwind CSS with custom IEO branding
 - **UI Components**: Radix UI primitives with shadcn/ui component library
 - **State Management**: React Query for server state, React hooks for local state
 - **Forms**: React Hook Form with Zod validation

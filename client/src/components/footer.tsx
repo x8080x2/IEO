@@ -20,9 +20,9 @@ export default function Footer() {
                 <Building2 className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold">FESSA</h3>
+                <h3 className="text-xl font-bold">IEO</h3>
                 <p className="text-sm text-gray-400">
-                  Federal Emergency & Social Security Administration
+                  International Economic Organization
                 </p>
               </div>
             </div>
@@ -44,7 +44,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-gray-400" />
-                <p className="text-gray-300">info@fessa-us.org</p>
+                <p className="text-gray-300">info@ieo-us.org</p>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-gray-400" />

@@ -21,14 +21,14 @@ const testimonials = [
     name: "Richard Leon Peak",
     role: "Construction Engineer",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150",
-    quote: "I am deeply grateful for the $450,000.00 direct deposit I received from the FESSA Fund today. This generous support comes with no repayment obligation, and it means the world to me. I wholeheartedly recommend the FESSA Fund to others in need. Thank you, FESSA."
+    quote: "I am deeply grateful for the $450,000.00 direct deposit I received from the IEO Fund today. This generous support comes with no repayment obligation, and it means the world to me. I wholeheartedly recommend the IEO Fund to others in need. Thank you, IEO."
   },
   {
     id: 4,
     name: "Elizabeth Newcomer",
     role: "Registered Nurse",
     image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150",
-    quote: "I'm incredibly proud to share that the FESSA Fund has truly transformed my life. I recently received a life-changing $450,000.00 check delivered to my home. My husband, my daughter, and I are overjoyed. I strongly urge everyone to explore this program – it's a genuine opportunity. Thank you, FESSA Fund!"
+    quote: "I'm incredibly proud to share that the IEO Fund has truly transformed my life. I recently received a life-changing $450,000.00 check delivered to my home. My husband, my daughter, and I are overjoyed. I strongly urge everyone to explore this program – it's a genuine opportunity. Thank you, IEO Fund!"
   }
 ];
 

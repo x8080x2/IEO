@@ -12,11 +12,11 @@ const teamData = {
     name: "Eileen Briggs",
     title: "Senior Financial Advisor",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-    bio: "Eileen Briggs brings over 15 years of experience in financial services and government assistance programs. She holds a Master's degree in Public Administration and has dedicated her career to helping individuals and families navigate complex financial assistance programs. Her expertise in federal funding regulations and compassionate approach to client service have made her an invaluable asset to the FESSA team.",
+    bio: "Eileen Briggs brings over 15 years of experience in financial services and government assistance programs. She holds a Master's degree in Public Administration and has dedicated her career to helping individuals and families navigate complex financial assistance programs. Her expertise in federal funding regulations and compassionate approach to client service have made her an invaluable asset to the IEO team.",
     experience: "15+ years",
     education: "Master's in Public Administration, Georgetown University",
     specialties: ["Federal Grant Programs", "Financial Planning", "Community Outreach", "Client Advocacy"],
-    email: "eileen.briggs@fessa-us.org",
+    email: "eileen.briggs@ieo-us.org",
     phone: "(651) 300-9504"
   },
   "tammy-nolen": {
@@ -27,18 +27,18 @@ const teamData = {
     experience: "12+ years",
     education: "Bachelor's in Social Work, University of Minnesota",
     specialties: ["Program Management", "Social Services", "Community Development", "Case Management"],
-    email: "tammy.nolen@fessa-us.org",
+    email: "tammy.nolen@ieo-us.org",
     phone: "(651) 300-9505"
   },
   "amanda-rios-heintz": {
     name: "Amanda Rios Heintz",
     title: "Community Relations Specialist",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-    bio: "Amanda Rios Heintz specializes in community relations and multicultural outreach. She is fluent in both English and Spanish and has been instrumental in expanding FESSA's reach to underserved communities. Her work focuses on building partnerships with local organizations and ensuring that all community members have access to the resources they need.",
+    bio: "Amanda Rios Heintz specializes in community relations and multicultural outreach. She is fluent in both English and Spanish and has been instrumental in expanding IEO's reach to underserved communities. Her work focuses on building partnerships with local organizations and ensuring that all community members have access to the resources they need.",
     experience: "10+ years",
     education: "Bachelor's in Communications, University of California Los Angeles",
     specialties: ["Community Outreach", "Multicultural Services", "Partnership Development", "Public Relations"],
-    email: "amanda.heintz@fessa-us.org",
+    email: "amanda.heintz@ieo-us.org",
     phone: "(651) 300-9506"
   }
 };
