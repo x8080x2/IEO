@@ -7,14 +7,14 @@ const slides = [
   {
     id: 1,
     image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=800",
-    title: "Welcome to FESSA",
+    title: "Welcome to International Economic Organization",
     subtitle: "Financial Support To Help You In Your Personal Needs",
     bgColor: "bg-gradient-to-r from-blue-600/90 to-blue-700/80"
   },
   {
     id: 2,
     image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=800",
-    title: "Welcome to FESSA",
+    title: "Welcome to International Economic Organization",
     subtitle: "Financial Support To Improve Our Local Community Development",
     bgColor: "bg-gradient-to-r from-green-600/90 to-blue-600/80"
   }
