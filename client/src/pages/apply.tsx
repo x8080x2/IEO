@@ -139,18 +139,14 @@ export default function Apply() {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>, type: 'front' | 'back') => {
     const file = event.target.files?.[0];
-    if (file) {
-      // In a real application, you would upload the file to a server
-      // For now, we'll just store the filename
-      const fileName = file.name;
-      if (type === 'front') {
-        setFrontLicenseFile(fileName);
-        form.setValue('driverLicenseFront', fileName);
-      } else {
-        setBackLicenseFile(fileName);
-        form.setValue('driverLicenseBack', fileName);
-      }
-    }
+    if (!file) return;
+    
+    const fileName = file.name;
+    const fieldName = type === 'front' ? 'driverLicenseFront' : 'driverLicenseBack';
+    const setterFn = type === 'front' ? setFrontLicenseFile : setBackLicenseFile;
+    
+    setterFn(fileName);
+    form.setValue(fieldName, fileName);
   };
 
   const onSubmit = (data: ApplicationForm) => {

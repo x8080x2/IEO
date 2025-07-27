@@ -1,4 +1,3 @@
-
 import TelegramBot from 'node-telegram-bot-api';
 import type { Application, Contact } from '@shared/schema';
 
