@@ -46,7 +46,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-gray-400" />
-                <p className="text-gray-300">info@ieo-us.org</p>
+                <p className="text-gray-300">info@internationaleconomic.org</p>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-gray-400" />
@@ -92,7 +92,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">© ieo-us.org, All Rights Reserved.</p>
+          <p className="text-gray-400">© 2025 ieo.org, All Rights Reserved.</p>
         </div>
       </div>
     </footer>
