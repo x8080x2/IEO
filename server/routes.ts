@@ -2,10 +2,11 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertApplicationSchema, insertContactSchema } from "@shared/schema";
-import { telegramService } from "./telegram";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Import telegram service after environment variables are set
+  const { telegramService } = await import("./telegram");
   // Submit application form
   app.post("/api/applications", async (req, res) => {
     try {
