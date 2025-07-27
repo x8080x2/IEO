@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -21,9 +21,9 @@ const applicationSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters").max(50, "First name too long"),
   lastName: z.string().min(2, "Last name must be at least 2 characters").max(50, "Last name too long"),
   streetAddress: z.string().min(5, "Please enter a complete address").optional(),
-  zip: z.string().regex(/^\d{5}(-\d{4})?$/, "Please enter a valid ZIP code").optional(),
-  city: z.string().min(2, "City name required").optional(),
-  state: z.string().min(1, "State is required"),
+  zip: z.string().min(3, "Please enter a valid postal/ZIP code").optional(),
+  city: z.string().min(2, "City/suburb name required").optional(),
+  state: z.string().min(1, "State/territory is required"),
   gender: z.string().min(1, "Gender is required"),
   dateOfBirth: z.string().min(1, "Date of birth is required").refine((date) => {
     const birthDate = new Date(date);
@@ -49,16 +49,7 @@ const applicationSchema = z.object({
 
 type ApplicationForm = z.infer<typeof applicationSchema>;
 
-const states = [
-  "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
-  "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
-  "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
-  "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
-  "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
-  "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-  "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia",
-  "Wisconsin", "Wyoming"
-];
+
 
 const ethnicities = [
   "White", "Black or African American", "Native American", "Asian American",
@@ -335,7 +326,7 @@ export default function Apply() {
                       <FormItem>
                         <FormLabel>Street Address</FormLabel>
                         <FormControl>
-                          <Input {...field} placeholder="Enter your street address" />
+                          <Input {...field} placeholder="e.g., 123 Main Street or 45 Collins Street" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -348,9 +339,9 @@ export default function Apply() {
                       name="zip"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Zip Code</FormLabel>
+                          <FormLabel>Postal/ZIP Code</FormLabel>
                           <FormControl>
-                            <Input {...field} placeholder="ZIP" />
+                            <Input {...field} placeholder="e.g., 10001 or 3000" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -362,9 +353,9 @@ export default function Apply() {
                       name="city"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>City</FormLabel>
+                          <FormLabel>City/Suburb</FormLabel>
                           <FormControl>
-                            <Input {...field} placeholder="City" />
+                            <Input {...field} placeholder="e.g., New York or Melbourne" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -376,21 +367,10 @@ export default function Apply() {
                       name="state"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>State *</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select state" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {states.map((state) => (
-                                <SelectItem key={state} value={state}>
-                                  {state}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                          <FormLabel>State/Territory *</FormLabel>
+                          <FormControl>
+                            <Input {...field} placeholder="e.g., NY, CA, NSW, VIC" />
+                          </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
