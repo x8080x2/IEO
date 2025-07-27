@@ -33,12 +33,12 @@ const applicationSchema = z.object({
   phone: z.string().min(1, "Phone number is required"),
   monthlyIncome: z.number().min(0, "Monthly income must be a positive number"),
   housingStatus: z.string().min(1, "Housing status is required"),
-  fundingType: z.string().min(1, "Funding type is required"),
+  fundingType: z.string().optional(),
   grantAmount: z.string().min(1, "Grant amount is required"),
   purposeDescription: z.string().min(1, "Purpose description is required"),
   referredBy: z.string().min(1, "Referral source is required"),
-  driverLicenseFront: z.string().optional(),
-  driverLicenseBack: z.string().optional(),
+  driverLicenseFront: z.any().optional(),
+  driverLicenseBack: z.any().optional(),
 });
 
 type ApplicationForm = z.infer<typeof applicationSchema>;
@@ -116,7 +116,13 @@ export default function Apply() {
 
   const applicationMutation = useMutation({
     mutationFn: async (data: ApplicationForm) => {
-      const response = await apiRequest("POST", "/api/applications", data);
+      // For now, convert files to base64 strings for storage
+      const processedData = {
+        ...data,
+        driverLicenseFront: frontLicenseFile,
+        driverLicenseBack: backLicenseFile,
+      };
+      const response = await apiRequest("POST", "/api/applications", processedData);
       return response.json();
     },
     onSuccess: () => {
@@ -142,11 +148,18 @@ export default function Apply() {
     if (!file) return;
     
     const fileName = file.name;
-    const fieldName = type === 'front' ? 'driverLicenseFront' : 'driverLicenseBack';
     const setterFn = type === 'front' ? setFrontLicenseFile : setBackLicenseFile;
     
     setterFn(fileName);
-    form.setValue(fieldName, fileName);
+    
+    // Create a file reader to convert file to base64 for demo purposes
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64 = reader.result as string;
+      const fieldName = type === 'front' ? 'driverLicenseFront' : 'driverLicenseBack';
+      form.setValue(fieldName, base64);
+    };
+    reader.readAsDataURL(file);
   };
 
   const onSubmit = (data: ApplicationForm) => {
@@ -583,6 +596,93 @@ export default function Apply() {
                       </FormItem>
                     )}
                   />
+                </div>
+
+                {/* Document Upload Section */}
+                <div className="space-y-6 border-t pt-8">
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    Required Documents
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    Please upload clear photos of both sides of your driver's license or state ID
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="driverLicenseFront"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Driver's License - Front *</FormLabel>
+                          <FormControl>
+                            <div className="space-y-2">
+                              <Input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => handleFileChange(e, 'front')}
+                                className="cursor-pointer"
+                              />
+                              {frontLicenseFile && (
+                                <p className="text-xs text-green-600">
+                                  Selected: {frontLicenseFile}
+                                </p>
+                              )}
+                              <p className="text-xs text-gray-500">
+                                Upload a clear photo of the front of your driver's license
+                              </p>
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="driverLicenseBack"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Driver's License - Back *</FormLabel>
+                          <FormControl>
+                            <div className="space-y-2">
+                              <Input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => handleFileChange(e, 'back')}
+                                className="cursor-pointer"
+                              />
+                              {backLicenseFile && (
+                                <p className="text-xs text-green-600">
+                                  Selected: {backLicenseFile}
+                                </p>
+                              )}
+                              <p className="text-xs text-gray-500">
+                                Upload a clear photo of the back of your driver's license
+                              </p>
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start space-x-3">
+                    <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-blue-800">
+                        Document Upload Requirements
+                      </p>
+                      <ul className="text-sm text-blue-700 mt-1 space-y-1">
+                        <li>• Images must be clear and readable</li>
+                        <li>• Accepted formats: JPG, PNG, GIF</li>
+                        <li>• Maximum file size: 10MB per image</li>
+                        <li>• Both front and back photos are required</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Submit Button */}
