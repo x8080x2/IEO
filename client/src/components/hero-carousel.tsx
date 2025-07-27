@@ -6,17 +6,17 @@ import { Link } from "wouter";
 const slides = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=800",
+    image: "https://angelusnews.com/wp-content/uploads/2020/01/20200117T0648-33167-CNS-PRAYER-SCHOOLS-scaled-e1579278646137-1024x576.jpg",
     title: "Welcome to International Economic Organization",
     subtitle: "Financial Support To Help You In Your Personal Needs",
-    bgColor: "bg-gradient-to-r from-blue-600/90 to-blue-700/80"
+    bgColor: "bg-gradient-to-r from-blue-600/90 to-blue-70/80"
   },
   {
     id: 2,
-    image: "https://angelusnews.com/wp-content/uploads/2020/01/20200117T0648-33167-CNS-PRAYER-SCHOOLS-scaled-e1579278646137-1024x576.jpg",
+    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=800",
     title: "Welcome to International Economic Organization",
     subtitle: "International Economic Organization to provide financial assistance to people worldwide, helping with childcare, purchasing homes, paying rent, and lots more",
-    bgColor: "bg-gradient-to-r from-green-600/90 to-blue-600/80"
+    bgColor: "bg-gradient-to-r from-green-600/90 to-blue-60/80"
   }
 ];
 
