@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -18,41 +18,38 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Upload, AlertTriangle } from "lucide-react";
 
 const applicationSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  streetAddress: z.string().optional(),
-  zip: z.string().optional(),
-  city: z.string().optional(),
-  state: z.string().min(1, "State is required"),
+  firstName: z.string().min(2, "First name must be at least 2 characters").max(50, "First name too long"),
+  lastName: z.string().min(2, "Last name must be at least 2 characters").max(50, "Last name too long"),
+  streetAddress: z.string().min(5, "Please enter a complete address").optional(),
+  zip: z.string().min(3, "Please enter a valid postal/ZIP code").optional(),
+  city: z.string().min(2, "City/suburb name required").optional(),
+  state: z.string().min(1, "State/territory is required"),
   gender: z.string().min(1, "Gender is required"),
-  dateOfBirth: z.string().min(1, "Date of birth is required"),
+  dateOfBirth: z.string().min(1, "Date of birth is required").refine((date) => {
+    const birthDate = new Date(date);
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    return age >= 18 && age <= 100;
+  }, "Must be between 18 and 100 years old"),
   ethnicity: z.string().min(1, "Ethnicity is required"),
   citizenshipStatus: z.string().min(1, "Citizenship status is required"),
   employmentStatus: z.string().min(1, "Employment status is required"),
   email: z.string().email("Invalid email address"),
-  phone: z.string().min(1, "Phone number is required"),
-  monthlyIncome: z.number().min(0, "Monthly income must be a positive number"),
+  phone: z.string().regex(/^[\+]?[(]?[\d\s\-\(\)]{10,}$/, "Please enter a valid phone number"),
+  monthlyIncome: z.number().min(0, "Monthly income must be a positive number").max(999999, "Income amount too large"),
   housingStatus: z.string().min(1, "Housing status is required"),
   fundingType: z.string().optional(),
   grantAmount: z.string().min(1, "Grant amount is required"),
-  purposeDescription: z.string().min(1, "Purpose description is required"),
+  purposeDescription: z.string().min(20, "Please provide at least 20 characters describing your purpose").max(1000, "Description too long"),
   referredBy: z.string().min(1, "Referral source is required"),
   driverLicenseFront: z.any().optional(),
   driverLicenseBack: z.any().optional(),
+  agreeToTerms: z.boolean().refine(val => val === true, "You must agree to the terms and conditions"),
 });
 
 type ApplicationForm = z.infer<typeof applicationSchema>;
 
-const states = [
-  "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
-  "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
-  "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
-  "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
-  "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
-  "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-  "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia",
-  "Wisconsin", "Wyoming"
-];
+
 
 const ethnicities = [
   "White", "Black or African American", "Native American", "Asian American",
@@ -86,9 +83,15 @@ export default function Apply() {
   const { toast } = useToast();
   const [frontLicenseFile, setFrontLicenseFile] = useState<string>("");
   const [backLicenseFile, setBackLicenseFile] = useState<string>("");
+  const [currentStep, setCurrentStep] = useState(1);
+  const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set());
+  
+  const totalSteps = 4;
+  const progress = (currentStep / totalSteps) * 100;
 
   const form = useForm<ApplicationForm>({
     resolver: zodResolver(applicationSchema),
+    mode: "onBlur", // Real-time validation
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -127,12 +130,16 @@ export default function Apply() {
     },
     onSuccess: () => {
       toast({
-        title: "Application Submitted!",
-        description: "Your application has been successfully submitted. We'll review it and get back to you soon.",
+        title: "Application Submitted Successfully! ✅",
+        description: "Thank you! Your application has been received. You'll hear from our team within 2-3 business days.",
       });
       form.reset();
       setFrontLicenseFile("");
       setBackLicenseFile("");
+      setCurrentStep(1);
+      setCompletedSteps(new Set());
+      // Clear saved draft
+      localStorage.removeItem('ieo-application-draft');
     },
     onError: () => {
       toast({
@@ -147,6 +154,26 @@ export default function Apply() {
     const file = event.target.files?.[0];
     if (!file) return;
     
+    // Validate file size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      toast({
+        title: "File Too Large",
+        description: "Please select an image smaller than 10MB.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: "Invalid File Type",
+        description: "Please select an image file (JPG, PNG, GIF).",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     const fileName = file.name;
     const setterFn = type === 'front' ? setFrontLicenseFile : setBackLicenseFile;
     
@@ -158,9 +185,43 @@ export default function Apply() {
       const base64 = reader.result as string;
       const fieldName = type === 'front' ? 'driverLicenseFront' : 'driverLicenseBack';
       form.setValue(fieldName, base64);
+      
+      toast({
+        title: "File Uploaded",
+        description: `${type === 'front' ? 'Front' : 'Back'} of license uploaded successfully.`,
+      });
     };
     reader.readAsDataURL(file);
   };
+
+  // Auto-save form data to localStorage
+  React.useEffect(() => {
+    const subscription = form.watch((value) => {
+      localStorage.setItem('ieo-application-draft', JSON.stringify(value));
+    });
+    return () => subscription.unsubscribe();
+  }, [form]);
+
+  // Load saved form data on mount
+  React.useEffect(() => {
+    const savedData = localStorage.getItem('ieo-application-draft');
+    if (savedData) {
+      try {
+        const parsedData = JSON.parse(savedData);
+        Object.keys(parsedData).forEach(key => {
+          if (parsedData[key] && key !== 'agreeToTerms') {
+            form.setValue(key as keyof ApplicationForm, parsedData[key]);
+          }
+        });
+        toast({
+          title: "Draft Restored",
+          description: "Your previous application draft has been restored.",
+        });
+      } catch (error) {
+        console.error('Error loading saved form data:', error);
+      }
+    }
+  }, []);
 
   const onSubmit = (data: ApplicationForm) => {
     applicationMutation.mutate(data);
@@ -179,6 +240,45 @@ export default function Apply() {
         <Card className="shadow-lg">
           <CardHeader className="bg-gray-50">
             <CardTitle className="text-2xl text-center">Application Form</CardTitle>
+            
+            {/* Progress Bar */}
+            <div className="mt-6">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm font-medium text-gray-600">Step {currentStep} of {totalSteps}</span>
+                <span className="text-sm font-medium text-gray-600">{Math.round(progress)}% Complete</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div 
+                  className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                  style={{ width: `${progress}%` }}
+                ></div>
+              </div>
+              
+              {/* Step Indicators */}
+              <div className="flex justify-between mt-4">
+                {[1, 2, 3, 4].map((step) => (
+                  <div key={step} className="flex items-center">
+                    <div 
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                        step === currentStep 
+                          ? 'bg-blue-600 text-white' 
+                          : completedSteps.has(step)
+                          ? 'bg-green-500 text-white'
+                          : 'bg-gray-300 text-gray-600'
+                      }`}
+                    >
+                      {completedSteps.has(step) ? '✓' : step}
+                    </div>
+                    <span className="ml-2 text-xs text-gray-600 hidden sm:block">
+                      {step === 1 && 'Personal'}
+                      {step === 2 && 'Financial'}
+                      {step === 3 && 'Funding'}
+                      {step === 4 && 'Documents'}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="p-8">
             <Form {...form}>
@@ -226,7 +326,7 @@ export default function Apply() {
                       <FormItem>
                         <FormLabel>Street Address</FormLabel>
                         <FormControl>
-                          <Input {...field} placeholder="Enter your street address" />
+                          <Input {...field} placeholder="e.g., 123 Main Street or 45 Collins Street" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -239,9 +339,9 @@ export default function Apply() {
                       name="zip"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Zip Code</FormLabel>
+                          <FormLabel>Postal/ZIP Code</FormLabel>
                           <FormControl>
-                            <Input {...field} placeholder="ZIP" />
+                            <Input {...field} placeholder="e.g., 10001 or 3000" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -253,9 +353,9 @@ export default function Apply() {
                       name="city"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>City</FormLabel>
+                          <FormLabel>City/Suburb</FormLabel>
                           <FormControl>
-                            <Input {...field} placeholder="City" />
+                            <Input {...field} placeholder="e.g., New York or Melbourne" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -267,21 +367,10 @@ export default function Apply() {
                       name="state"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>State *</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select state" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {states.map((state) => (
-                                <SelectItem key={state} value={state}>
-                                  {state}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                          <FormLabel>State/Territory *</FormLabel>
+                          <FormControl>
+                            <Input {...field} placeholder="e.g., NY, CA, NSW, VIC" />
+                          </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -685,16 +774,54 @@ export default function Apply() {
                   </div>
                 </div>
 
-                {/* Submit Button */}
-                <div className="text-center pt-6">
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="fessa-blue hover:fessa-blue-dark text-white font-semibold text-lg px-12 py-4"
-                    disabled={applicationMutation.isPending}
-                  >
-                    {applicationMutation.isPending ? "Submitting..." : "Apply"}
-                  </Button>
+                {/* Terms and Submit Section */}
+                <div className="space-y-6 border-t pt-8">
+                  <FormField
+                    control={form.control}
+                    name="agreeToTerms"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                        <FormControl>
+                          <input
+                            type="checkbox"
+                            checked={field.value}
+                            onChange={field.onChange}
+                            className="mt-1"
+                          />
+                        </FormControl>
+                        <div className="space-y-1 leading-none">
+                          <FormLabel className="text-sm">
+                            I agree to the Terms and Conditions *
+                          </FormLabel>
+                          <p className="text-xs text-gray-500">
+                            By checking this box, I confirm that all information provided is accurate and I agree to the IEO program terms and conditions.
+                          </p>
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <div className="text-center pt-6">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="fessa-blue hover:fessa-blue-dark text-white font-semibold text-lg px-12 py-4"
+                      disabled={applicationMutation.isPending || !form.watch('agreeToTerms')}
+                    >
+                      {applicationMutation.isPending ? (
+                        <div className="flex items-center space-x-2">
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          <span>Submitting...</span>
+                        </div>
+                      ) : (
+                        "Submit Application"
+                      )}
+                    </Button>
+                    <p className="text-xs text-gray-500 mt-2">
+                      Your application will be reviewed within 2-3 business days
+                    </p>
+                  </div>
                 </div>
               </form>
             </Form>

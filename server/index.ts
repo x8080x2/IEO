@@ -2,6 +2,10 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
+// Set environment variables manually for testing
+process.env.TELEGRAM_BOT_TOKEN = "8404284222:AAHxmI1nZ8XjbuE8T_K0kZQ7q3y7ZHxRWJo";
+process.env.TELEGRAM_CHAT_ID = "6513875342";
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
